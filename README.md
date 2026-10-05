@@ -11,6 +11,8 @@ Reusable instructions and resources for AI agents. Each skill explains what it d
 
 - [Talk like a human being](talk-like-a-human-being/SKILL.md): guide everyday agent communication in English or Chinese with natural wording and factual precision.
 
+- [Excel workbooks](xlsx/SKILL.md): build, edit and audit Excel workbooks and financial models with live formulas, safe edits to other people's files, and recalculation checks before delivery. Needs Excel on Windows for files with charts, pivots or macros.
+
 ## Adding a skill
 
 Create a directory named for the skill and add a `SKILL.md` file. Use YAML frontmatter for the skill’s `name` and `description`, followed by Markdown instructions. Add supporting files only when needed. See the [Agent Skills specification](https://agentskills.io/specification).
