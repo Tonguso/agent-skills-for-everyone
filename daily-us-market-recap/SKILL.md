@@ -1,5 +1,8 @@
 ---
 name: daily-us-market-recap
+metadata:
+  author: Hogan Tong
+  version: "1.0.0"
 description: Write a concise, client-ready daily US market recap in English or Chinese using verified closing prices, market-moving news, industry performance and upcoming catalysts. Use for daily market recaps, US closing wraps, what happened in the market today, 美股收盘 and 每日市场回顾. Not for weekly reviews or intraday updates.
 compatibility: Requires web access to Yahoo Finance and news or primary sources, including timestamped intraday data for the London 20:00 dollar-index observation.
 ---
