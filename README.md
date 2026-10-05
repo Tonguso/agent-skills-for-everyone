@@ -9,6 +9,8 @@ Reusable instructions and resources for AI agents. Each skill explains what it d
 
 - [Daily US market recap](daily-us-market-recap/SKILL.md): write verified, client-ready US closing notes in English or Chinese, covering market moves, industry divergence and upcoming catalysts.
 
+- [Talk like a human being](talk-like-a-human-being/SKILL.md): guide everyday agent communication in English or Chinese with natural wording and factual precision.
+
 ## Adding a skill
 
 Create a directory named for the skill and add a `SKILL.md` file. Use YAML frontmatter for the skill’s `name` and `description`, followed by Markdown instructions. Add supporting files only when needed. See the [Agent Skills specification](https://agentskills.io/specification).
