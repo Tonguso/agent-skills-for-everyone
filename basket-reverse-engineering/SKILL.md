@@ -3,7 +3,7 @@ name: basket-reverse-engineering
 description: Reverse-engineer an existing stock basket's investment idea, selection criteria and weights, including muddled or inconsistent construction. Use for basket interpretation or 反推篮子、拆解篮子, not requests to build a new basket.
 metadata:
   author: Hogan Tong
-  version: "1.1.3"
+  version: "1.1.4"
 ---
 
 # Basket Reverse-Engineering
@@ -228,6 +228,10 @@ material counterexample even if it weakens the preferred explanation.
 ## Step 7. Use co-movement only where informative
 When price relationships could distinguish explanations, read [Co-movement evidence](references/co-movement.md).
 Use real data and distinguish common market exposure from evidence of a specific idea.
+Use soft cluster discovery to generate and challenge explanations, not to impose themes
+or membership thresholds. Compare within- and between-group relationships, check another
+window where feasible, and try an inexpensive random-basket cohesion baseline when useful.
+Interpret price clusters against business exposure and catalysts before naming them.
 If the check is skipped or unavailable, state that briefly and why.
 
 ## Step 8. Form the thesis and strategy
