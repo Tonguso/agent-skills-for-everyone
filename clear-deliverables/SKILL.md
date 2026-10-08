@@ -3,10 +3,13 @@ name: clear-deliverables
 description: Structure and verify technical deliverables around reader needs. Use when producing or revising structured technical explanations, operational procedures, specifications, handoffs or HTML explanation pages. Not for everyday chat or informal replies.
 license: MIT
 metadata:
-  version: "1.0.0"
+  author: "Hogan Tong"
+  version: "1.0.1"
 ---
 
 # Clear deliverables
+
+By [Hogan Tong](https://github.com/Tonguso).
 
 The core method has no software dependencies. The optional HTML checker requires Python 3.9+, Playwright 1.48+ and its Chromium browser. Rendering other formats requires appropriate local tools.
 
@@ -36,6 +39,3 @@ Use any relevant document, research or design skills already available in the ho
 Before calling a deliverable final, review requirements and sources, inspect relevant rendered views, fix material defects, and confirm the actual output files exist and can be opened with the available file tools or target application. Report the files, actual tests and limitations, not a generic quality certification.
 
 If evidence, rendering or dependencies are unavailable, preserve and label the draft, name the blocked check and next useful step. Follow the host's permissions and the user's existing authorization for dependency setup. Do not silently substitute a format or claim an unperformed test. If the checker flags an intentional layout, inspect it and document a narrowly scoped exception; do not ignore all errors. A checker pass proves only its measured rules, never semantic correctness, full accessibility or production readiness.
-
-## Provenance
-Selective methods informed by FutureAtoms karpathy-ladder at commit 07c7089. No upstream code or prose copied; the checker is an original implementation. See [method reference](references/method.md) for attribution and deliberate exclusions.

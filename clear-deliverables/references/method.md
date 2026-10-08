@@ -22,8 +22,7 @@ Choose sequence for ordered exchanges; flow for branching tasks; state for allow
 
 At actual viewing sizes check label overlap, clipping, contrast, line/arrow meaning, hierarchy, units and readable text. For long pages inspect the entire page, not only the top. Local diagram scrolling is acceptable when discoverable and usable; page-wide unintended overflow is not. Check applicable keyboard interactions separately. Style choices such as max-width, colored borders, balanced headings and Chinese “——” are not defects by themselves.
 
-## Sources and deliberate exclusions
-Agent Skills format: https://agentskills.io/specification (read 2026-10-07).
-Method inspiration: https://github.com/FutureAtoms/karpathy-ladder, inspected commit 07c7089; MIT, copyright (c) 2026 FutureAtoms.
-Borrowed concepts: labelled diagrams, sources versus interpretations, browser-based layout checks. Text and checker are newly authored, not copied or adapted code. If future edits copy substantial upstream material, include the upstream MIT notice and license with those files.
-Excluded: video/audio pipelines, automatic font downloads, paid reviewers, global lexicons, punctuation bans and a fixed visual style.
+## References
+
+- [Agent Skills specification](https://agentskills.io/specification): the package format.
+- [FutureAtoms / karpathy-ladder](https://github.com/FutureAtoms/karpathy-ladder): inspiration for labelled diagrams, distinguishing sources from interpretations, and browser-based layout checks.
