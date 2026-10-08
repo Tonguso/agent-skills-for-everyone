@@ -4,6 +4,7 @@ Reusable instructions and resources for AI agents. Each skill explains what it d
 
 ## Skills
 
+- [Clear deliverables](clear-deliverables/SKILL.md): structure technical explanations, procedures, specifications and handoffs around reader needs; verify evidence and rendered readability. Includes an optional offline HTML layout checker.
 - [Basket reverse engineering](basket-reverse-engineering/SKILL.md): infer a stock basket’s themes, selection logic, filters, and thesis.
 - [Quant literature research](quant-literature-research/SKILL.md): verify quantitative finance sources, assess replication and implementation evidence, and prepare a backtest handoff. Requires web search and source access.
 
