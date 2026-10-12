@@ -4,7 +4,7 @@ description: Structure and verify technical deliverables around reader needs. Us
 license: MIT
 metadata:
   author: "Hogan Tong"
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # Clear deliverables
@@ -23,7 +23,7 @@ Before drafting, identify the reader, their decision or task, prior knowledge, o
 2. Map the content before styling. Each section should answer one reader question. Separate essentials from supporting detail. Give definitions before unfamiliar notation and link prerequisites rather than repeat whole documents.
 3. Make statements executable or testable: name the actor, action, object, condition, timing, units and exceptions where relevant. Keep one term for one concept. For procedures include expected results, stop conditions, failure response and safe restart. For specifications distinguish requirements from examples and assumptions. Do not simplify away safety warnings or domain precision.
 4. Separate evidence, inference, proposal and unknowns. Keep sources, dates, observation periods and calculation assumptions with the claims they support. Trace material numbers to inputs; qualify causal interpretations. Missing evidence remains missing, not a plausible completion.
-5. Add a diagram only when relationships or sequence are clearer visually. Select flow, sequence, state or architecture according to the question. Label arrows with their meaning, payload or condition; name nodes, directions, units and boundaries. Match identifiers to the text. Include failure branches and a text equivalent. Styling is contextual, not a mandated engineering-sheet aesthetic.
+5. Add a diagram only when relationships or sequence are clearer visually. Select flow, sequence, state or architecture according to the question. Label arrows with their meaning, payload or condition; name nodes, directions, units and boundaries. Match identifiers to the text. Include failure branches and a text equivalent. Styling is contextual, not a mandated engineering-sheet aesthetic. In flow and state diagrams, arrows run horizontal or vertical unless there is a stated reason not to; any bend is a right angle, with as few bends as possible, so move boxes before adding elbows. Geometry rules and checks are in [references/method.md](references/method.md).
 6. Review substantive correctness against sources/requirements, then readability in the actual rendered medium. These are separate checks, not a requirement for separate agents or paid reviewers. Fix ambiguous actors, missing units, contradictions, unsupported conclusions and unusable failure paths. Inspect every relevant page/slide/view, including diagram labels at intended size. Re-render changed artifacts and retain exact evidence.
 
 ## Medium-specific QA

@@ -31,6 +31,76 @@ PROBE = r"""() => {
      for(let j=i+1;j<texts.length;j++)if(hits(a,texts[j].getBoundingClientRect()))add('svg-label-overlap',texts[i].textContent+' / '+texts[j].textContent);
    }
  }
+ // Arrow geometry, in each figure's own user units. Arrows = line/path/polyline with a marker.
+ const vis=e=>{const s=getComputedStyle(e);return s.display!=='none'&&s.visibility!=='hidden';};
+ const segD=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;let t=L?((p[0]-a[0])*dx+(p[1]-a[1])*dy)/L:0;t=Math.max(0,Math.min(1,t));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);};
+ const edgeD=(p,P)=>Math.min(...P.map((a,i)=>segD(p,a,P[(i+1)%P.length])));
+ const inPoly=(p,P)=>{let c=false;for(let i=0,j=P.length-1;i<P.length;j=i++){const a=P[i],b=P[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])c=!c;}return c;};
+ const parsePath=d=>{const t=d.match(/[A-Za-z]|-?(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?/gi)||[];const pts=[];let i=0,c='',x=0,y=0,sx=0,sy=0;const n=()=>parseFloat(t[i++]);
+   while(i<t.length){if(/[A-Za-z]/.test(t[i]))c=t[i++];const r=c===c.toLowerCase();
+     switch(c.toUpperCase()){
+       case 'M':x=(r?x:0)+n();y=(r?y:0)+n();sx=x;sy=y;pts.push([x,y]);c=r?'l':'L';break;
+       case 'L':x=(r?x:0)+n();y=(r?y:0)+n();pts.push([x,y]);break;
+       case 'H':x=(r?x:0)+n();pts.push([x,y]);break;
+       case 'V':y=(r?y:0)+n();pts.push([x,y]);break;
+       case 'Z':x=sx;y=sy;pts.push([x,y]);break;
+       default:return null;}}
+   return pts;};
+ [...document.querySelectorAll('svg')].forEach((svg,si)=>{
+   if(!shown(svg)||!svg.getScreenCTM())return;
+   const S=svg.getScreenCTM().inverse();
+   const tf=e=>{const m=S.multiply(e.getScreenCTM());return (x,y)=>{const q=new DOMPoint(x,y).matrixTransform(m);return [q.x,q.y];};};
+   const vb=svg.viewBox.baseVal;
+   const V=vb&&vb.width?[vb.x,vb.y,vb.width,vb.height]:[0,0,svg.width.baseVal.value,svg.height.baseVal.value];
+   const fig='figure '+(si+1);
+   const shapes=[];
+   for(const e of svg.querySelectorAll('rect,polygon,circle,ellipse')){
+     if(!vis(e)||e.closest('marker,defs,pattern,clipPath,mask'))continue;
+     const f=tf(e),g=k=>e[k].baseVal.value;
+     if(e.tagName==='rect'){const x=g('x'),y=g('y'),w=g('width'),h=g('height');
+       if(w*h>=0.5*V[2]*V[3])continue;
+       shapes.push({poly:[f(x,y),f(x+w,y),f(x+w,y+h),f(x,y+h)]});}
+     else if(e.tagName==='polygon'){const P=[];for(let k=0;k<e.points.numberOfItems;k++){const q=e.points.getItem(k);P.push(f(q.x,q.y));}if(P.length>2)shapes.push({poly:P});}
+     else{const c=f(g('cx'),g('cy')),sc=Math.hypot(...f(1,0).map((v,k)=>v-f(0,0)[k]));
+       const rx=(e.tagName==='circle'?g('r'):g('rx'))*sc,ry=(e.tagName==='circle'?g('r'):g('ry'))*sc;
+       shapes.push({ell:[c[0],c[1],rx,ry]});}
+   }
+   const bd=(p,s)=>s.poly?edgeD(p,s.poly):Math.abs(Math.hypot((p[0]-s.ell[0])/s.ell[2],(p[1]-s.ell[1])/s.ell[3])-1)*Math.min(s.ell[2],s.ell[3]);
+   const inside=(p,s)=>s.poly?inPoly(p,s.poly):Math.hypot((p[0]-s.ell[0])/s.ell[2],(p[1]-s.ell[1])/s.ell[3])<1;
+   const texts=[...svg.querySelectorAll('text')].filter(shown).map(e=>{const b=e.getBBox(),f=tf(e),c=[f(b.x,b.y),f(b.x+b.width,b.y+b.height)];
+     return {name:e.textContent.trim(),box:[Math.min(c[0][0],c[1][0]),Math.min(c[0][1],c[1][1]),Math.max(c[0][0],c[1][0]),Math.max(c[0][1],c[1][1])]};});
+   for(const e of svg.querySelectorAll('line,path,polyline')){
+     if(!vis(e)||e.closest('marker,defs'))continue;
+     const cs=getComputedStyle(e),end=cs.markerEnd!=='none',start=cs.markerStart!=='none';
+     if(!end&&!start)continue;
+     let raw;
+     if(e.tagName==='line')raw=[[e.x1.baseVal.value,e.y1.baseVal.value],[e.x2.baseVal.value,e.y2.baseVal.value]];
+     else if(e.tagName==='polyline'){raw=[];for(let k=0;k<e.points.numberOfItems;k++){const q=e.points.getItem(k);raw.push([q.x,q.y]);}}
+     else raw=parsePath(e.getAttribute('d')||'');
+     const id=`${fig} ${e.id||e.tagName}`;
+     if(!raw){add('svg-arrow-curve',id+': curve or arc command; use straight segments');continue;}
+     const f=tf(e);let P=raw.map(q=>f(q[0],q[1])).filter((q,k,a)=>!k||Math.hypot(q[0]-a[k-1][0],q[1]-a[k-1][1])>0.01);
+     if(!end)P=P.reverse();
+     if(P.length<2)continue;
+     const r=q=>`(${q[0].toFixed(0)},${q[1].toFixed(0)})`,tag=`${id} ${r(P[0])}->${r(P[P.length-1])}`;
+     const segs=P.slice(1).map((q,k)=>[P[k],q]);
+     if(segs.some(([a,b])=>Math.abs(a[0]-b[0])>0.5&&Math.abs(a[1]-b[1])>0.5))add('svg-arrow-diagonal',tag);
+     if(P.some(q=>q[0]<V[0]||q[1]<V[1]||q[0]>V[0]+V[2]||q[1]>V[1]+V[3]))add('svg-arrow-outside',tag);
+     const tip=P[P.length-1],gap=shapes.length?Math.min(...shapes.map(s=>bd(tip,s))):Infinity;
+     if(gap>1)add('svg-arrow-gap',`${tag}: tip ${gap===Infinity?'has no target shape':gap.toFixed(1)+' from nearest border'}`);
+     const mid=(cs.markerEnd!=='none'?cs.markerEnd:cs.markerStart).match(/#([^")]+)/),mk=mid&&document.getElementById(mid[1]);
+     const ml=mk?mk.markerWidth.baseVal.value*(mk.getAttribute('markerUnits')==='userSpaceOnUse'?1:(parseFloat(cs.strokeWidth)||1)):0;
+     const len=segs.reduce((s,[a,b])=>s+Math.hypot(b[0]-a[0],b[1]-a[1]),0);
+     if(len-ml<20)add('svg-arrow-short',`${tag}: shaft ${(len-ml).toFixed(1)} beyond marker`);
+     const samples=segs.flatMap(([a,b])=>{const n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/2));return Array.from({length:n+1},(_,k)=>[a[0]+(b[0]-a[0])*k/n,a[1]+(b[1]-a[1])*k/n]);});
+     for(const s of shapes){
+       if(inside(P[0],s)&&bd(P[0],s)>2||inside(tip,s)&&bd(tip,s)>2)continue; // container, not an obstacle
+       if(samples.some(q=>inside(q,s)&&bd(q,s)>2)){add('svg-arrow-through-box',tag);break;}
+     }
+     for(const t of texts){const b=t.box;
+       if(samples.some(q=>q[0]>b[0]-1&&q[0]<b[2]+1&&q[1]>b[1]-1&&q[1]<b[3]+1))add('svg-label-on-line',`${tag} / ${t.name}`);}
+   }
+ });
  return {language:document.documentElement.lang,text:document.body.innerText,issues};
 }"""
 
