@@ -3,7 +3,7 @@ name: basket-reverse-engineering
 description: Reverse-engineer an existing stock basket's investment idea, selection criteria and weights, including muddled or inconsistent construction. Use for basket interpretation or 反推篮子、拆解篮子, not requests to build a new basket.
 metadata:
   author: Hogan Tong
-  version: "1.1.4"
+  version: "1.1.5"
 ---
 
 # Basket Reverse-Engineering
@@ -56,7 +56,10 @@ conclusion. Lists below are examples, not mandatory data collection checklists.
   disclosures can establish facts, while promotional claims need corroboration.
 - Keep a compact working record of decisive claims, source links, publication dates,
   observation periods and whether each value is disclosed, calculated, estimated or
-  inferred. Link the decisive evidence beside the corresponding output claim.
+  inferred. Retain the full evidence trail there. In the answer, link only the few sources
+  needed to substantiate decisive judgments beside those claims, not every company line
+  or every collected source. Do not add a URL dump; source selection must not erase
+  material uncertainty or change what a disclosure actually supports.
 - For historical reconstruction, use information available at the construction or
   rebalance date. A later publication about an earlier financial period is not information
   the author necessarily had. Apply this to fundamentals, estimates, ETF holdings,
@@ -119,14 +122,30 @@ For each relevant name and theme, grade current business exposure independently:
 - None: evidence supports no relevant exposure.
 - Unknown: evidence is insufficient to establish the exposure or its degree.
 
-State the denominator, period and whether the figure is disclosed or estimated. Do not
-mix revenue and profit shares without identifying the basis. These bands are a guide,
-not precision the disclosures necessarily support. Overlapping themes can each be High;
-their shares need not sum to 100%.
+Record the denominator, period, source and whether each figure is disclosed, calculated,
+estimated or inferred. Do not mix revenue and profit shares without identifying the basis.
+These bands are a guide, not precision the disclosures necessarily support. Overlapping
+themes can each be High; their shares need not sum to 100%.
+
+Keep portfolio weights separate from company business shares. Grade the exposure to the
+actual proposed driver: data-centre revenue is not automatically AI revenue, and broader
+segment shares are not a measured share of a narrower product. When only a broader proxy
+is disclosed, label it and leave the narrower degree Unknown rather than borrow its grade.
+Use exact business percentages in the answer only when they distinguish explanations,
+change a grade, or expose a material exception. Otherwise give a compact grade with its
+basis and keep numeric detail in working evidence. Any percentage shown needs its measure,
+denominator and period clearly identified, locally or by an unambiguous shared statement;
+the source stays traceable in evidence, with a link only when decisive. Even when numbers
+are omitted, state any basis or period distinction necessary to understand the conclusion.
+Do not mechanically repeat values, but do not suppress useful quantitative evidence.
 
 Describe share-price or narrative sensitivity separately where relevant, using High,
 Medium, Low or Unknown with its evidence and an inferred label when judgment-based.
 For example: current business exposure Low; narrative sensitivity High, inferred.
+A narrative rating is not a measured price response. Identify actual quantitative
+sensitivity separately with its window and controls; leave it untested if not measured.
+Construction evidence grades describe support for an inference, not exposure magnitude
+or share-price elasticity.
 Future opportunities do not become current revenue exposure. For factor baskets, assess
 the relevant factor measures instead of imposing revenue-share bands.
 
@@ -279,6 +298,14 @@ the four sections below, omitting IV when no weights or position amounts were su
 Compress repetition before removing material uncertainty or decisive evidence. Follow a
 user-requested format or level of detail instead of forcing this default.
 
+Organise the answer around the inferred construction, not successive company earnings
+summaries. Business facts belong only where they explain the common mechanism, an
+exception, selection over a peer, or a weight. Keep the full evidence in the working
+record; use only necessary decisive links in the response. Be concise about evidence:
+give the judgment, the minimum support it needs and any uncertainty that would change
+it, not a research log. Brevity never removes a decisive counterexample, hides thin
+evidence, or replaces the research and verification behind the answer.
+
 Write in the user's language. For English, use plain punctuation and straight quotes;
 avoid em/en dashes, decorative characters and emoji. For Chinese, use normal full-width
 Chinese punctuation, including Chinese quotation marks. Avoid special spaces. Use section
@@ -302,10 +329,14 @@ II. Theme Identification / 主题识别（Theme Identification）
 Identify each organising theme, factor, event or hedge objective with its main supporting
 evidence. Separate secondary overlays where appropriate without relegating a primary
 factor objective to an overlay. State the exposure legend once. For a small basket,
-give a compact line per name; for a larger one, group by exposure grade and repeat names
-where exposures overlap. Keep business exposure distinct from narrative/price sensitivity
-and show direction where relevant. Unknown must remain visible; omit None entries only
-when doing so does not conceal an unexplained name. Label disclosed figures, estimates
+give a compact line per name: role in the mechanism, business grade and basis, then an
+independent narrative/price sensitivity with direction and inferred/untested status as
+applicable. Do not repeat portfolio weights here unless needed to explain an exception;
+identify them as allocations if used. For a larger basket, group by exposure grade and
+repeat names where exposures overlap. Apply Step 3's selective numeric and denominator
+rules, not a financial-results paragraph per name. Keep business exposure distinct from
+narrative/price sensitivity and show direction where relevant. Unknown must remain visible;
+omit None entries only when doing so does not conceal an unexplained name. Label disclosed figures, estimates
 and inferences. Close with the co-movement result or why it was not run.
 
 III. Selection Method Inference / 选股方法推测（Selection Method Inference）
@@ -327,3 +358,16 @@ unresolved. Do not infer weights when none were supplied.
 Close the last section with the Step 9 usability result: whether the brief reproduces the
 construction logic, and any unresolved membership or weighting choices. Keep limitations
 and verification findings inside the relevant sections rather than adding boilerplate.
+
+Before sending, check the actual draft, not merely that the skill was loaded:
+- The four sections are covered (IV only with amounts), led by a common mechanism and
+  tested against a narrower alternative; exceptions remain visible, not six biographies.
+- Selection rests on informative included/absent peer comparisons or an explicit unresolved
+  finding; weights have relevant tests or a specific reason they remain untested.
+- The reader can distinguish allocations from business shares and AI from broader proxies;
+  grades have traceable bases, with essential definitions in the answer.
+- Construction confidence, business exposure, inferred narrative sensitivity and measured
+  price sensitivity are separate; windows and unavailable checks are honestly labelled.
+- Each retained number and link changes or substantiates the interpretation; remove
+  repetition, research narration and non-decisive URLs, not useful quantification or
+  necessary caveats.

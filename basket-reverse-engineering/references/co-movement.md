@@ -8,6 +8,17 @@ Weak co-movement does not automatically refute genuine business exposure. Low ag
 correlation does not refute a multi-theme basket.
 
 ## Data and controls
+When a price check is informative, actually try a suitable public data path (for example,
+a public chart endpoint); do not infer unavailability from an untested capability. Record
+provider/request, attempted window and concrete error or missing coverage. After failure,
+try a reasonable alternative source or a narrower valid check when it can still answer
+the question; do not repeat the same failing request or fabricate substitutes. Distinguish
+not attempted, attempted but failed, partial coverage, and verified usable data. Keep
+request/error detail in working evidence, with only the material limitation in the answer.
+An unknown creation date does not block a clearly labelled recent-window diagnostic;
+it cannot establish historical selection or what the author knew. Acquire data according
+to information value, not to force a full backtest on every basket.
+
 Use actual corporate-action-adjusted returns. State the observation window, frequency,
 usable sample size, coverage and appropriate market/sector benchmarks. Distinguish price
 adjustment from excess returns or regression residuals; describe the adjustment actually

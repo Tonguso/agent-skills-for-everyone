@@ -7,6 +7,11 @@ to 100% or treat quantities as weights. Use context to establish position signs;
 does not resolve unsigned figures, state the assumption rather than silently assigning it.
 If conversion inputs are unavailable, describe the supplied numbers and limit inference.
 
+Portfolio allocation percentages describe positions, not company revenue or profit shares.
+Label any chain-link totals as portfolio allocations. Do not multiply them by mixed-period,
+mixed-definition business shares to imply a precise thematic revenue exposure. Such an
+aggregate needs comparable denominators, dates and coverage, with unknowns retained.
+
 Compare plausible simple models: equal weights, capitalisation/free-float weights,
 inverse volatility, factor-score tilts, explicit bucket budgets or tiers. Consider caps,
 floors and rounding when supported. Do not sum overlapping thematic exposures as if they
