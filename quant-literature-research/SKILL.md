@@ -4,17 +4,10 @@ description: Searches, gathers and synthesises academic and industry literature 
 compatibility: Needs web search and the ability to fetch web pages (journal, preprint and working-paper sites, factor databases).
 metadata:
   author: Hogan Tong
-  version: "1.1.0"
----
-
----
-name: quant-literature-research
-description: Search and assess quantitative finance literature, verify citations, evaluate replication and implementation evidence, and produce a brief for a separate backtest. Use for factor, anomaly, strategy, market microstructure, risk model, and financial machine-learning research.
+  version: "1.2.1"
 ---
 
 # Quant Literature Research
-
-**Author:** Hogan Tong · **Version:** 1.2.0
 
 ## Requirements and evidence access
 Requires web search and access to source pages; full-text pages or PDFs are needed to verify methods and numerical results. Use the host agent's available tools. If access is unavailable, disclose the limitation rather than pretending to have reviewed the evidence.
